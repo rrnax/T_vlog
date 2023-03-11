@@ -1,24 +1,16 @@
-# README
+# SPA vlog app on Vue.js frontend and Ruby on rails API backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby on Rails version 7.0 
 
-Things you may want to cover:
+* Vue.js version 3.0 vue is in fornt_pure folder
 
-* Ruby version
+* Database SQL Lite
 
-* System dependencies
+* SPA app without state mangment system like Vuex, data about states are implemented by transfering data between components
 
-* Configuration
+* Ruby on Rails devise gem to deal with users
 
-* Database creation
+* REST API with jwt Token to users
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
