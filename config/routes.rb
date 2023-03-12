@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :content do
     resource :posts
     resource :comments
+    post '/comments/list', to: 'comments#index'
   end
 
   get '/content/posts/:id', to: 'content/posts#specific'

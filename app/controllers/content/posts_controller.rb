@@ -15,7 +15,7 @@ def create
       message: "Utworzono pomyślnie"
     }, status: :ok
   else
-    render jsdon: {
+    render json: {
       message: "Coś poszło nie tak na serwerze"
     }, status: :unprocessable_entity
   end
@@ -29,8 +29,8 @@ def update
       message: "Edytowano pomyślnie"
     }, status: :ok
   else
-    render jsdon: {
-      message: "Coś poszło nie tak na serwerze"
+    render json: {
+      message: "Coś poszło nie tak na serwerze",
     }, status: :unprocessable_entity
   end
 end
@@ -43,7 +43,7 @@ def destroy
       message: "Usunięto pomyślnie"
     }, status: :ok
   else
-    render jsdon: {
+    render json: {
       message: "Coś poszło nie tak na serwerze"
     }, status: :unprocessable_entity
   end

@@ -5,7 +5,7 @@ export async function pickPosts(restUrl){
     await axios.get(`${restUrl}content/posts`)
         .then(response => {
             posts = response['data'];
-            console.log(response['data']);
+            // console.log(response['data']);
         })
         .catch(error => {
             console.log(error);
@@ -44,3 +44,25 @@ export async function delatePost(restUrl, post){
         })
     return postInfo;
 }
+
+export async function updatePost(restUrl, post){
+    let postInfo = {};
+    await axios.put(`${restUrl}content/posts`, {
+        "post": {
+            "id": post.id,
+            "title": post.title,
+            "body": post.body
+        }
+    })
+        .then(response => {
+            postInfo.message = response.data;
+            postInfo.correct = true;
+            console.log(response);
+        })
+        .catch(error => {
+            postInfo.correct = false;
+            console.log(error);
+        })
+    return postInfo;
+}
+

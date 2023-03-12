@@ -80,6 +80,7 @@ nav {
   display: flex;
   align-items: center;
   font-size: 150%;
+  cursor: pointer;
 }
 
 h1 {
@@ -100,6 +101,7 @@ button {
   font-size: 140%;
   text-decoration: none;
   color: var(--text_color);
+  cursor: pointer;
 }
 
 button:hover {

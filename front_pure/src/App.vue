@@ -27,9 +27,6 @@
       :rest-url="restURL"
       :user="user"
       :current-site="currentSite"/>
-  <EditPost
-      v-if="currentSite.layout === 'editPost'"
-      :rest-url="restURL"/>
   <PostDeatails
       v-if="currentSite.layout === 'postDeatails'"
       :current-site="currentSite"
@@ -47,7 +44,6 @@ import Register from "@/components/authentication/Register.vue";
 import Account from "@/components/authentication/Account.vue";
 import account from "@/components/authentication/Account.vue";
 import AddPost from "@/components/articles/AddPost.vue";
-import EditPost from "@/components/articles/EditPost.vue";
 import PostDeatails from "@/components/articles/PostDeatails.vue";
 
 
@@ -60,7 +56,6 @@ export default {
   },
   components: {
     PostDeatails,
-    EditPost,
     AddPost,
     Account,
     Register,

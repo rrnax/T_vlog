@@ -40,7 +40,7 @@ export async function loging(restUrl, user) {                       //log in API
             user.id = response.data['data'].id;
             urlInfo.message = response.data['message'];
             urlInfo.correct = true;
-            console.log(response);
+            // console.log(response);
         })
         .catch(error => {
             urlInfo.message = error.response['data'];

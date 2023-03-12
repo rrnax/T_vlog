@@ -8,7 +8,11 @@
   <div class="post" v-for="post in this.posts">
     <div class="post-header">
       <h1 class="tittle">{{post.title}}</h1>
-      <h2 class="info">{{post.user_id}} {{post.created_at }}</h2>
+      <div class="info">
+        <p>{{post.user_id}}</p>
+        <p> | </p>
+        <p>{{post.updated_at}}</p>
+      </div>
     </div>
     <h2 class="content">{{post.body}}</h2>
     <div class="to-right">
@@ -58,7 +62,7 @@ export default {
       for (const post of this.posts) {
         let tempInfo = await findUser(this.restUrl, post.user_id);
         post.user_id = tempInfo.user.email;
-        post.created_at = moment(String(post.created_at)).format('MM.DD.YYYY hh:mm a');
+        post.updated_at = moment(String(post.updated_at)).format('MM.DD.YYYY HH:mm');
       }
     }
   }
@@ -82,6 +86,7 @@ export default {
   background-color: var(--elemants_color);
   color: var(--opossite_text);
   border: var(--elemants_color) 2px solid;
+  cursor: pointer;
 }
 
 .precise:hover {
@@ -100,6 +105,7 @@ export default {
   margin: 20px 20px 0 20px;
   border-radius: 20px;
   border: var(--elemants_color) 2px solid;
+  cursor: pointer;
 }
 
 .adding:hover {
@@ -134,9 +140,13 @@ export default {
 }
 
 .info {
+  display: flex;
   color: dimgrey;
-  margin: auto 20px auto 0;
-  word-spacing: 20px;
+  font-size: 20px;
+}
+
+.info p {
+  margin-right: 10px;
 }
 
 .content{
