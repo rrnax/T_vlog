@@ -13,7 +13,7 @@
       <p v-if="!editonable" class="content">{{this.currentSite.article.body}}</p>
       <textarea v-if="editonable" v-model="this.currentSite.article.body" class="content edit-content"/>
     </div>
-    <div v-if="this.user.email === this.currentSite.article.user_id" class="to-right">
+    <div v-if="this.user.role === 2" class="to-right">
       <button v-if="!editonable" class="precise" @click="editPost">Edytuj ten Post</button>
       <button v-if="editonable" class="precise" @click="back">Odrzuć</button>
       <button v-if="editonable" class="precise" @click="savePost">Zapisz</button>
@@ -23,10 +23,11 @@
       <p>{{this.comments.length}} komentarze</p>
     </div>
     <Comment v-for="comment in this.comments"
+             @refresh-comments="loadComments"
          :rest-url="this.restUrl"
          :user="this.user"
          :comment="comment"/>
-    <div class="new-comment">
+    <div class="new-comment" v-if="user.email !== ''">
       <textarea class="new-body" placeholder="Napisz komentarz..." />
       <button class="confirm-body" @click="addComment">Dodaj</button>
     </div>
@@ -84,6 +85,13 @@ export default {
       this.editonable = false;
     },
 
+    async loadComments(){
+      let info ={}, comment = {};
+      comment.post_id = this.currentSite.article.id;
+      info = await getCommentsToPost(this.restUrl, comment);
+      this.comments = info.list;
+    },
+
     async savePost(){
       let info = {};
       info = await updatePost(this.restUrl, this.currentSite.article);
@@ -102,7 +110,6 @@ export default {
       comment.post_id = this.currentSite.article.id;
       comment.body = document.querySelector(".new-body").value;
       info = await createComment(this.restUrl, comment);
-      console.log(info);
       if(info.correct){
         temp = await getCommentsToPost(this.restUrl, comment);
         this.comments = temp.list;
@@ -224,7 +231,7 @@ export default {
 .post {
   width: 90%;
   margin: 50px auto;
-  padding: 0;
+  padding-bottom: 30px;
   border: solid 2px var(--elemants_color);
 }
 

@@ -51,6 +51,7 @@ export default {
       if(this.urlInfo.correct) {
         // for(let properties in this.user) delete this.user[properties];
         this.user.email = "";
+        this.user.role = -1;
         this.currentSite.layout = "login";
         this.currentSite.navi = "loggedOut";
       } else {
